@@ -17,6 +17,17 @@ html {
   min-height: 100%;
 }
 
+
+
+nav {
+    background-color: #000222;
+
+}
+
+a {
+    text-decoration: none;
+}
+
 body {
   margin-bottom: 60px;
 }

@@ -13,12 +13,8 @@ namespace Academia_WebApp.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
 
-        public IActionResult Privacy()
+        public IActionResult Index()
         {
             return View();
         }

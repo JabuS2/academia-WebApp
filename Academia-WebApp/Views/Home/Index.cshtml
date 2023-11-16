@@ -13,14 +13,39 @@
                 <th scope="col">Editar/Ecluir</th>
             </tr>
         </thead>
+
         <tbody>
             <tr>
                 <th scope="row">1</th>
                 <td>Mark</td>
                 <td>Otto</td>
-                <td><button type="button" class="btn btn-danger">Excluir</button> <button type="button" class="btn btn-primary">Editar</button></td>
+                <td><button type="button" class="btn btn-danger" id="excluirModalBtn">Excluir</button>
+                    <button type="button" class="btn btn-primary" id="editModalBtn">Editar</button>
+                    </td>
             </tr>
 
         </tbody>
     </table>
+
+</div>
+
+<!-- Modal de Exclusão -->
+<div id="excluirModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeExcluirModalBtn">&times;</span>
+        <h2>Deseja Excluir este Cliente?</h2>
+        <p>Nome CLiente</p>
+        <button type="button" class="btn btn-danger btn-lg">Excluir</button>
+        <button type="button" class="btn btn-primary btn-lg" id="closeExcluirModalBtn2">Cancelar</button>
+    </div>
+</div>
+
+<!-- Modal de Edição -->
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeEditModalBtn">&times;</span>
+        <h2>Modal de Edição</h2>
+        <p>Conteúdo do Modal de Edição vai aqui.</p>
+        <button id="closeEditModalBtn2" class="btn-lg">Fechar</button>
+    </div>
 </div>

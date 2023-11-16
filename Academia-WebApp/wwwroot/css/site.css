@@ -31,3 +31,57 @@ a {
 body {
   margin-bottom: 60px;
 }
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 500px; /* Largura máxima do modal */
+    width: 100%;
+    max-height: 80vh; /* Altura máxima do modal como 80% da altura da viewport */
+    overflow-y: auto; /* Adiciona barra de rolagem vertical, se necessário */
+    background-color: rgba(0,0,255, 0.4);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.modal-content {
+    position: relative;
+    width: 100%; /* O conteúdo ocupa toda a largura do modal */
+    height: 100%; /* O conteúdo ocupa toda a altura do modal */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 5px;
+    padding-right: 5px;
+
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.close:hover {
+        color: red;
+}
+
+#excluirModal h2{
+    margin-bottom: 25%;
+}
+
+#excluirModal p{
+    font-size: 20px
+}
+
+.modal .btn {
+    width: 100%; /* Padroniza a largura dos botões */
+    margin-bottom: 10px; /* Adiciona espaçamento entre os botões */
+}

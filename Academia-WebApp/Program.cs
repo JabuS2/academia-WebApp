@@ -1,4 +1,5 @@
-using Academia_WebApp.DBContext;
+ using Academia_WebApp.DBContext;
+using Academia_WebApp.Repositorio;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +15,9 @@ builder.Services.AddDbContext<acadDbContext>(options =>
     options.UseSqlServer(configuration.GetConnectionString("myconn"));
 });
 
-// Registrar a implementação de IFornecedorRepositorio
+// Registrar a implementação
+builder.Services.AddScoped<IClienteRepositorio, ClienteRepositorio>();
+
 //builder.Services.AddScoped<IFornecedorRepositorio, FornecedorRepositorio>();
 
 

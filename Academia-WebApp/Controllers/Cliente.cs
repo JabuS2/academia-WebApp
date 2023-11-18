@@ -27,5 +27,33 @@ namespace Academia_WebApp.Controllers
             _clienteRepositorio.Adicionar(cliente);
             return RedirectToAction("Index");
         }
+
+        public IActionResult Apagar(int id)
+        {
+            ClienteModel cliente = _clienteRepositorio.ListarPorId(id);
+            return View(cliente);
+        }
+
+
+        public IActionResult Excluir(int id)
+        {
+            _clienteRepositorio.Excluir(id);
+            return RedirectToAction("CadastroCliente");
+        }
+
+        public IActionResult Editar(int id)
+        {
+            ClienteModel cliente = _clienteRepositorio.ListarPorId(id);
+            return View("Editar", cliente);
+        }
+
+
+        [HttpPost]
+        public IActionResult Alterar(ClienteModel cliente)
+        {
+            _clienteRepositorio.Atualizar(cliente);
+            return RedirectToAction("CadastroCliente");
+        }
+
     }
 }

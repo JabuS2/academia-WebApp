@@ -15,10 +15,13 @@ namespace Academia_WebApp.Controllers
 
         public IActionResult Index()
         {
-            List<ClienteModel> Clientes = _clienteRepositorio.BuscarTodos();
-            return View(Clientes);
-        }
+            var viewModel = new ClienteViewModel
+            {
+                ListaClientes = _clienteRepositorio.BuscarTodos()
+            };
 
+            return View(viewModel);
+        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -26,5 +29,7 @@ namespace Academia_WebApp.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
     }
 }

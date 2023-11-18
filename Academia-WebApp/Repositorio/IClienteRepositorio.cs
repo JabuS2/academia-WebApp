@@ -6,5 +6,11 @@ namespace Academia_WebApp.Repositorio
     {
         List<ClienteModel> BuscarTodos();   
         ClienteModel Adicionar(ClienteModel cliente);
+
+        ClienteModel Atualizar(ClienteModel cliente);
+
+        bool Excluir(int id);
+
+        ClienteModel ListarPorId(int id);
     }
 }

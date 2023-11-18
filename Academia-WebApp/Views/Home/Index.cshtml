@@ -1,4 +1,4 @@
-﻿@model List<ClienteModel>
+﻿@model ClienteViewModel
 @{
     ViewData["Title"] = "Home";
 }
@@ -16,21 +16,35 @@
         </thead>
 
         <tbody>
-            @if (Model != null && Model.Any())
+            @if (Model != null && Model.ListaClientes.Any())
             {
-                foreach (ClienteModel cliente in Model)
+                foreach (ClienteModel cliente in Model.ListaClientes)
                 {
                     <tr>
                         <th scope="row">@cliente.ClienteId</th>
                         <td>@cliente.Nome</td>
                         <td>@cliente.DataCadastro</td>
                         <td>
-                            <button type="button" class="btn btn-danger" id="excluirModalBtn">Excluir</button>
-                            <button type="button" class="btn btn-primary" id="editModalBtn">Editar</button>
+                            <button type="button" class="btn btn-danger btn-excluir" data-cliente-id="@cliente.ClienteId" data-cliente-nome="@cliente.Nome">Excluir</button>
+                            <a role="button" class="btn btn-primary" asp-action="Editar" asp-controller="Cliente" asp-route-id="@cliente.ClienteId">Editar</a>
+
+
+
+
+
                             <a type="button" class="btn btn-success" id="ver" asp-action="Index" asp-controller="Cliente">Perfil</a>
                         </td>
                     </tr>
 
+                    <div id="excluirModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close" id="closeExcluirModalBtn">&times;</span>
+                            <h2>Deseja Excluir este Cliente?</h2>
+                            <p>Nome do Cliente: <span id="nomeCliente"></span></p>
+                            <a type="button" class="btn btn-danger btn-lg btn-excluir-modal" asp-controller="Cliente" asp-action="Excluir">Excluir</a>
+                            <button type="button" class="btn btn-primary btn-lg" id="closeExcluirModalBtn2">Cancelar</button>
+                        </div>
+                    </div>
                 }
             }
 
@@ -38,25 +52,4 @@
         </tbody>
     </table>
     <a type="button" class="btn btn-success" asp-action="CadastroCliente" asp-controller="Cliente">Cadastrar Cliente</a>
-</div>
-
-<!-- Modal de Exclusão -->
-<div id="excluirModal" class="modal">
-    <div class="modal-content">
-        <span class="close" id="closeExcluirModalBtn">&times;</span>
-        <h2>Deseja Excluir este Cliente?</h2>
-        <p>Nome CLiente</p>
-        <button type="button" class="btn btn-danger btn-lg">Excluir</button>
-        <button type="button" class="btn btn-primary btn-lg" id="closeExcluirModalBtn2">Cancelar</button>
-    </div>
-</div>
-
-<!-- Modal de Edição -->
-<div id="editModal" class="modal">
-    <div class="modal-content">
-        <span class="close" id="closeEditModalBtn">&times;</span>
-        <h2>Modal de Edição</h2>
-        <p>Conteúdo do Modal de Edição vai aqui.</p>
-        <button id="closeEditModalBtn2" class="btn-lg">Fechar</button>
-    </div>
 </div>

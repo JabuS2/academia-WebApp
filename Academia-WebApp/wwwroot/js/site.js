@@ -1,4 +1,4 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+﻿﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 // for details on configuring this project to bundle and minify static web assets.
 
 
@@ -77,6 +77,42 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    var excluirButtons = document.querySelectorAll('.btn-excluir');
+    var excluirModal = document.getElementById('excluirModal');
+    var closeExcluirModalBtn = document.getElementById('closeExcluirModalBtn');
+    var excluirBtn = document.querySelector('.btn-excluir-modal');
+    var nomeClienteSpan = document.getElementById('nomeCliente');
+
+    excluirButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            var clienteId = button.getAttribute('data-cliente-id');
+            var nomeCliente = button.getAttribute('data-cliente-nome');
+
+            // Atualizar o nome do cliente no modal
+            nomeClienteSpan.textContent = nomeCliente;
+
+            // Construir a URL do botão de exclusão no modal
+            var urlExclusao = excluirBtn.getAttribute('href').split('?')[0] + '?id=' + clienteId;
+            excluirBtn.setAttribute('href', urlExclusao);
+
+            // Abrir o modal
+            excluirModal.style.display = 'block';
+        });
+    });
+
+    closeExcluirModalBtn.addEventListener('click', function () {
+        // Fechar o modal
+        excluirModal.style.display = 'none';
+    });
+
+
+});
+
+
+
+
 
 
 // Write your JavaScript code.

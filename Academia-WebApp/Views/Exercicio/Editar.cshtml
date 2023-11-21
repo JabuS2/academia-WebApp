@@ -1,0 +1,54 @@
+﻿@model ExercicioModel
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<div class="text-center">
+
+    <h3>Editando Exercicio: @Model.Nome</h3>
+</div>
+<p>
+
+    <form asp-controller="Exercicio" asp-action="Alterar" method="post">
+        <input type="hidden" asp-for="ExercicioId" />
+        <div class="form-group">
+            <label for="nome">Nome Completo</label>
+            <input type="text" asp-for="Nome" class="form-control" >
+        </div>
+
+        <div class="form-group">
+            <label for="nome">Tipo de plano</label>
+            <input type="text" asp-for="Descricao" class="form-control" >
+        </div>
+
+        <div class="form-group">
+            <label for="nome">Musculo Alvo</label>
+            <select type="text" asp-for="MusculoAlvo" class="form-control">
+                <option value="Peito">Peito</option>
+                <option value="Costas">Costas</option>
+                <option value="Biceps">Biceps</option>
+                <option value="Triceps">Triceps</option>
+                <option value="Ombro">Ombro</option>
+                <option value="Panturrilha">Panturrilha</option>
+                <option value="Gluteo">Gluteo</option>
+                <option value="Quadriceps">Quadriceps</option>
+                <option value="Posterior">Posterior</option>
+                <option value="Antebraço">Antebraço</option>
+                <option value="Trapézio">Trapézio</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="nome">Data Do Cadastro</label>
+            <input type="text" asp-for="Equipamento" class="form-control">
+        </div>
+
+        <div class="d-grid gap-2">
+            <button type="submit" id="alterarBtn" class="btn btn-primary">Alterar</button>
+
+            <a class="btn btn-secondary btn-block" asp-controller="Exercicio" asp-action="Index" role="button">Voltar</a>
+        </div>
+
+    </form>
+
+</p>

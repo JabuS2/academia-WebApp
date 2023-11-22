@@ -8,12 +8,6 @@ namespace Academia_WebApp.Models
         public int TreinoPersonalizadoExercicioId { get; set; }
 
         [Required]
-        public int TreinoPersonalizadoId { get; set; }
-
-        [Required]
-        public int ExercicioId { get; set; }
-
-        [Required]
         public int Series { get; set; }
 
         [Required]
@@ -21,6 +15,13 @@ namespace Academia_WebApp.Models
 
         [Required]
         public int Carga { get; set; }
-    }
 
-}  // Relacionamento com Treinos Personalizados
+        // Relacionamento com Exercício
+        public int ExercicioId { get; set; }
+        public ExercicioModel ?Exercicio { get; set; }
+
+        // Relacionamento com Treino Personalizado
+        public int TreinoPersonalizadoId { get; set; }
+        public TreinoPersonalizadoModel ?TreinoPersonalizado { get; set; }
+    }
+}

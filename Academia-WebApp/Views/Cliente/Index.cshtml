@@ -1,10 +1,12 @@
-﻿
+﻿@model List<ClienteTreinoViewModel>
+
 @{
-    ViewData["Title"] = "Perfil";
+    ViewData["Title"] = "Treinos do Cliente";
 }
 
 <div class="text-center">
-    <h1 class="display-4">"Nome Do Aluno"</h1>
+    <h1 class="display-4">Treinos</h1>
+
     <table class="table" id="myTable">
         <thead>
             <tr>
@@ -16,19 +18,24 @@
         </thead>
 
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Segunda</td>
-                <td>Otto</td>
-                <td>
-                    <button type="button" class="btn btn-danger">Excluir</button>
-                    <button type="button" class="btn btn-primary" id="ver">Ver</button>
-                </td>
-            </tr>
-
+            @foreach (var clienteComTreinos in Model)
+            {
+                <tr>
+                    <th scope="row">@clienteComTreinos.Treinos.FirstOrDefault()?.TreinoPersonalizadoId</th>
+                    <td>@clienteComTreinos.Treinos.FirstOrDefault()?.Observacoes</td>
+                    <td>@clienteComTreinos.Treinos.FirstOrDefault()?.DataCriacao</td>
+                    <td>
+                        <button type="button" class="btn btn-danger">Excluir</button>
+                        <button type="button" class="btn btn-primary" id="ver">Ver</button>
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 
-    <button type="button" class="btn btn-success">Adicionar Treino</button>
+    <form asp-action="CadastroTreino" asp-controller="TreinoPersonalizado" method="get">
+        <input type="hidden" id="clienteId" name="clienteId" value="@ViewContext.HttpContext.Request.Query["clienteId"]" />
+        <button type="submit" class="btn btn-success">Adicionar Treino</button>
+    </form>
 
 </div>

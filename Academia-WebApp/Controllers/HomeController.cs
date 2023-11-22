@@ -15,13 +15,13 @@ namespace Academia_WebApp.Controllers
 
         public IActionResult Index()
         {
-            var viewModel = new ClienteViewModel
-            {
-                ListaClientes = _clienteRepositorio.BuscarTodos()
-            };
+            // Obtenha a lista de clientes e seus treinos
+            List<ClienteTreinoViewModel> clientesComTreinos = _clienteRepositorio.ObterClientesComTreinos();
 
-            return View(viewModel);
+            // Passe a lista para a view
+            return View(new ClienteViewModel { ListaClientesComTreinos = clientesComTreinos });
         }
+
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

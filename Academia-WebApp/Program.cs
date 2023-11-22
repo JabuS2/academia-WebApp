@@ -18,6 +18,7 @@ builder.Services.AddDbContext<acadDbContext>(options =>
 // Registrar a implementação
 builder.Services.AddScoped<IClienteRepositorio, ClienteRepositorio>();
 builder.Services.AddScoped<IExercicioRepositorio, ExercicioRepositorio>();
+builder.Services.AddScoped<ITreinoRepositorio, TreinoRepositorio>();
 
 //builder.Services.AddScoped<IFornecedorRepositorio, FornecedorRepositorio>();
 

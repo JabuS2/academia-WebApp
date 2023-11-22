@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AcademiaWebApp.Migrations
 {
     /// <inheritdoc />
-    public partial class MigrationName : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -50,9 +50,9 @@ namespace AcademiaWebApp.Migrations
                 {
                     TreinoPersonalizadoId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ClienteId = table.Column<int>(type: "int", nullable: false),
                     DataCriacao = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Observacoes = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                    Observacoes = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ClienteId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -71,27 +71,27 @@ namespace AcademiaWebApp.Migrations
                 {
                     TreinoPersonalizadoExercicioId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TreinoPersonalizadoId = table.Column<int>(type: "int", nullable: false),
-                    ExercicioId = table.Column<int>(type: "int", nullable: false),
                     Series = table.Column<int>(type: "int", nullable: false),
                     Repeticoes = table.Column<int>(type: "int", nullable: false),
                     Carga = table.Column<int>(type: "int", nullable: false),
-                    ExercicioModelExercicioId = table.Column<int>(type: "int", nullable: true),
-                    TreinoPersonalizadoModelTreinoPersonalizadoId = table.Column<int>(type: "int", nullable: true)
+                    ExercicioId = table.Column<int>(type: "int", nullable: false),
+                    TreinoPersonalizadoId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TreinoPersonalizadoExercicio", x => x.TreinoPersonalizadoExercicioId);
                     table.ForeignKey(
-                        name: "FK_TreinoPersonalizadoExercicio_Exercicio_ExercicioModelExercicioId",
-                        column: x => x.ExercicioModelExercicioId,
+                        name: "FK_TreinoPersonalizadoExercicio_Exercicio_ExercicioId",
+                        column: x => x.ExercicioId,
                         principalTable: "Exercicio",
-                        principalColumn: "ExercicioId");
+                        principalColumn: "ExercicioId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_TreinoPersonalizadoExercicio_TreinoPersonalizado_TreinoPersonalizadoModelTreinoPersonalizadoId",
-                        column: x => x.TreinoPersonalizadoModelTreinoPersonalizadoId,
+                        name: "FK_TreinoPersonalizadoExercicio_TreinoPersonalizado_TreinoPersonalizadoId",
+                        column: x => x.TreinoPersonalizadoId,
                         principalTable: "TreinoPersonalizado",
-                        principalColumn: "TreinoPersonalizadoId");
+                        principalColumn: "TreinoPersonalizadoId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -100,14 +100,14 @@ namespace AcademiaWebApp.Migrations
                 column: "ClienteId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TreinoPersonalizadoExercicio_ExercicioModelExercicioId",
+                name: "IX_TreinoPersonalizadoExercicio_ExercicioId",
                 table: "TreinoPersonalizadoExercicio",
-                column: "ExercicioModelExercicioId");
+                column: "ExercicioId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TreinoPersonalizadoExercicio_TreinoPersonalizadoModelTreinoPersonalizadoId",
+                name: "IX_TreinoPersonalizadoExercicio_TreinoPersonalizadoId",
                 table: "TreinoPersonalizadoExercicio",
-                column: "TreinoPersonalizadoModelTreinoPersonalizadoId");
+                column: "TreinoPersonalizadoId");
         }
 
         /// <inheritdoc />

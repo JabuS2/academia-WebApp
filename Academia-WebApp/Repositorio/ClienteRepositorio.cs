@@ -60,5 +60,29 @@ namespace Academia_WebApp.Repositorio
             return true;
         }
 
+        public List<ClienteTreinoViewModel> ObterClientesComTreinos()
+        {
+            List<ClienteTreinoViewModel> clientesComTreinos = new List<ClienteTreinoViewModel>();
+
+            // Obter todos os clientes do banco de dados
+            List<ClienteModel> clientes = _acadDbContext.Cliente.ToList();
+
+            // Para cada cliente, obter os treinos associados
+            foreach (var cliente in clientes)
+            {
+                ClienteTreinoViewModel clienteComTreinos = new ClienteTreinoViewModel
+                {
+                    Cliente = cliente,
+                    Treinos = _acadDbContext.TreinoPersonalizado
+                                .Where(treino => treino.ClienteId == cliente.ClienteId)
+                                .ToList()
+                };
+
+                clientesComTreinos.Add(clienteComTreinos);
+            }
+
+            return clientesComTreinos;
+        }
+
     }
 }

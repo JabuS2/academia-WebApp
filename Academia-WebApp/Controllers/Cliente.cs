@@ -7,15 +7,40 @@ namespace Academia_WebApp.Controllers
     public class Cliente : Controller
     {
         private readonly IClienteRepositorio _clienteRepositorio;
-        public Cliente(IClienteRepositorio clienteRepositorio) 
+        private readonly ITreinoRepositorio _treinoRepositorio;
+
+        public Cliente(IClienteRepositorio clienteRepositorio, ITreinoRepositorio treinoRepositorio) 
         {
             _clienteRepositorio = clienteRepositorio;
+            _treinoRepositorio = treinoRepositorio;
         }
 
-        public IActionResult Index()
+        private List<ClienteTreinoViewModel> TransformarTreinosParaClienteTreinoViewModel(List<TreinoPersonalizadoModel> treinos, int clienteId)
         {
-            return View();
+            List<ClienteTreinoViewModel> clientesComTreinos = treinos
+                .Select(treino => new ClienteTreinoViewModel
+                {
+                    Cliente = _clienteRepositorio.ListarPorId(clienteId), // Obtém os dados do cliente
+                    Treinos = new List<TreinoPersonalizadoModel> { treino }
+                })
+                .ToList();
+
+            return clientesComTreinos;
         }
+
+
+
+        public IActionResult Index(int clienteId)
+        {
+            List<TreinoPersonalizadoModel> treinos = _treinoRepositorio.ObterTreinosPorCliente(clienteId);
+
+            List<ClienteTreinoViewModel> clienteComTreinos = TransformarTreinosParaClienteTreinoViewModel(treinos, clienteId);
+
+            return View(clienteComTreinos);
+        }
+
+
+
         public IActionResult CadastroCliente()
         {
             return View();

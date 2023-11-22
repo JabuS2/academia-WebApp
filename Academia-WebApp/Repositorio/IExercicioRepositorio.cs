@@ -12,5 +12,6 @@ namespace Academia_WebApp.Repositorio
         bool Excluir(int id);
 
         ExercicioModel ListarPorId(int id);
+
     }
 }

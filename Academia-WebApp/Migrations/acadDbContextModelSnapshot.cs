@@ -22,7 +22,39 @@ namespace AcademiaWebApp.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Academia_WebApp.Models.ClienteModel", b =>
+            modelBuilder.Entity("Academia_WebApp.Models.TreinoPersonalizadoExercicioModel", b =>
+                {
+                    b.Property<int>("TreinoPersonalizadoExercicioId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TreinoPersonalizadoExercicioId"));
+
+                    b.Property<int>("Carga")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ExercicioId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Repeticoes")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Series")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TreinoPersonalizadoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("TreinoPersonalizadoExercicioId");
+
+                    b.HasIndex("ExercicioId");
+
+                    b.HasIndex("TreinoPersonalizadoId");
+
+                    b.ToTable("TreinoPersonalizadoExercicio");
+                });
+
+            modelBuilder.Entity("ClienteModel", b =>
                 {
                     b.Property<int>("ClienteId")
                         .ValueGeneratedOnAdd()
@@ -56,7 +88,7 @@ namespace AcademiaWebApp.Migrations
                     b.ToTable("Cliente");
                 });
 
-            modelBuilder.Entity("Academia_WebApp.Models.ExercicioModel", b =>
+            modelBuilder.Entity("ExercicioModel", b =>
                 {
                     b.Property<int>("ExercicioId")
                         .ValueGeneratedOnAdd()
@@ -89,45 +121,7 @@ namespace AcademiaWebApp.Migrations
                     b.ToTable("Exercicio");
                 });
 
-            modelBuilder.Entity("Academia_WebApp.Models.TreinoPersonalizadoExercicioModel", b =>
-                {
-                    b.Property<int>("TreinoPersonalizadoExercicioId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TreinoPersonalizadoExercicioId"));
-
-                    b.Property<int>("Carga")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ExercicioId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ExercicioModelExercicioId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Repeticoes")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Series")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TreinoPersonalizadoId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TreinoPersonalizadoModelTreinoPersonalizadoId")
-                        .HasColumnType("int");
-
-                    b.HasKey("TreinoPersonalizadoExercicioId");
-
-                    b.HasIndex("ExercicioModelExercicioId");
-
-                    b.HasIndex("TreinoPersonalizadoModelTreinoPersonalizadoId");
-
-                    b.ToTable("TreinoPersonalizadoExercicio");
-                });
-
-            modelBuilder.Entity("Academia_WebApp.Models.TreinoPersonalizadoModel", b =>
+            modelBuilder.Entity("TreinoPersonalizadoModel", b =>
                 {
                     b.Property<int>("TreinoPersonalizadoId")
                         .ValueGeneratedOnAdd()
@@ -155,18 +149,26 @@ namespace AcademiaWebApp.Migrations
 
             modelBuilder.Entity("Academia_WebApp.Models.TreinoPersonalizadoExercicioModel", b =>
                 {
-                    b.HasOne("Academia_WebApp.Models.ExercicioModel", null)
+                    b.HasOne("ExercicioModel", "Exercicio")
                         .WithMany("TreinosPersonalizadosExercicios")
-                        .HasForeignKey("ExercicioModelExercicioId");
+                        .HasForeignKey("ExercicioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("Academia_WebApp.Models.TreinoPersonalizadoModel", null)
+                    b.HasOne("TreinoPersonalizadoModel", "TreinoPersonalizado")
                         .WithMany("TreinosPersonalizadosExercicios")
-                        .HasForeignKey("TreinoPersonalizadoModelTreinoPersonalizadoId");
+                        .HasForeignKey("TreinoPersonalizadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Exercicio");
+
+                    b.Navigation("TreinoPersonalizado");
                 });
 
-            modelBuilder.Entity("Academia_WebApp.Models.TreinoPersonalizadoModel", b =>
+            modelBuilder.Entity("TreinoPersonalizadoModel", b =>
                 {
-                    b.HasOne("Academia_WebApp.Models.ClienteModel", "Cliente")
+                    b.HasOne("ClienteModel", "Cliente")
                         .WithMany("TreinosPersonalizados")
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -175,17 +177,17 @@ namespace AcademiaWebApp.Migrations
                     b.Navigation("Cliente");
                 });
 
-            modelBuilder.Entity("Academia_WebApp.Models.ClienteModel", b =>
+            modelBuilder.Entity("ClienteModel", b =>
                 {
                     b.Navigation("TreinosPersonalizados");
                 });
 
-            modelBuilder.Entity("Academia_WebApp.Models.ExercicioModel", b =>
+            modelBuilder.Entity("ExercicioModel", b =>
                 {
                     b.Navigation("TreinosPersonalizadosExercicios");
                 });
 
-            modelBuilder.Entity("Academia_WebApp.Models.TreinoPersonalizadoModel", b =>
+            modelBuilder.Entity("TreinoPersonalizadoModel", b =>
                 {
                     b.Navigation("TreinosPersonalizadosExercicios");
                 });

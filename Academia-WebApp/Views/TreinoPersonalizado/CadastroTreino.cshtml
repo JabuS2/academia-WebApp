@@ -1,0 +1,32 @@
+﻿@model TreinoPersonalizadoModel
+
+@{
+    ViewData["Title"] = "Cadastrar De Treino";
+}
+
+<div class="text-center">
+    <h3>Cadastrar Treino</h3>
+</div>
+
+<form asp-controller="TreinoPersonalizado" asp-action="CadastrarTreino" method="post">
+        <input type="hidden" asp-for="ClienteId" value="@ViewBag.ClienteId" />
+
+        <div class="form-group">
+            <label for="nome">Dia de treino/Observações</label>
+            <input type="text" asp-for="Observacoes" class="form-control" placeholder="Segunda-Feira">
+        </div>
+
+        <div class="form-group">
+            <label for="nome">Data de Criação</label>
+            <input asp-for="DataCriacao" type="date" class="form-control">
+        </div>
+
+        <div class="d-grid gap-2">
+            <button type="submit" id="alterarBtn" class="btn btn-primary">Cadastrar Treino</button>
+
+            <a class="btn btn-secondary btn-block" asp-controller="Home" asp-action="Index" role="button">Voltar</a>
+        </div>
+
+    </form>
+
+</p>

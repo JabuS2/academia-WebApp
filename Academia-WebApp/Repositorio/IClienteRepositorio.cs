@@ -12,5 +12,7 @@ namespace Academia_WebApp.Repositorio
         bool Excluir(int id);
 
         ClienteModel ListarPorId(int id);
+
+        List<ClienteTreinoViewModel> ObterClientesComTreinos();
     }
 }

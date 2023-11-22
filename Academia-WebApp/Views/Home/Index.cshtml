@@ -16,23 +16,21 @@
         </thead>
 
         <tbody>
-            @if (Model != null && Model.ListaClientes.Any())
+            @if (Model != null && Model.ListaClientesComTreinos.Any())
             {
-                foreach (ClienteModel cliente in Model.ListaClientes)
+                foreach (var clienteComTreinos in Model.ListaClientesComTreinos)
                 {
                     <tr>
-                        <th scope="row">@cliente.ClienteId</th>
-                        <td>@cliente.Nome</td>
-                        <td>@cliente.DataCadastro</td>
+                        <th scope="row">@clienteComTreinos.Cliente.ClienteId</th>
+                        <td>@clienteComTreinos.Cliente.Nome</td>
+                        <td>@clienteComTreinos.Cliente.DataCadastro</td>
                         <td>
-                            <button type="button" class="btn btn-danger btn-excluir" data-cliente-id="@cliente.ClienteId" data-cliente-nome="@cliente.Nome">Excluir</button>
-                            <a role="button" class="btn btn-primary" asp-action="Editar" asp-controller="Cliente" asp-route-id="@cliente.ClienteId">Editar</a>
+                            <button type="button" class="btn btn-danger btn-excluir" data-cliente-id="@clienteComTreinos.Cliente.ClienteId" data-cliente-nome="@clienteComTreinos.Cliente.Nome">Excluir</button>
+                            <a role="button" class="btn btn-primary" asp-action="Editar" asp-controller="Cliente" asp-route-id="@clienteComTreinos.Cliente.ClienteId">Editar</a>
+                            <a type="button" class="btn btn-success" asp-action="Index" asp-controller="Cliente" asp-route-clienteId="@clienteComTreinos.Cliente.ClienteId">Treino</a>
 
 
 
-
-
-                            <a type="button" class="btn btn-success" id="ver" asp-action="Index" asp-controller="Cliente">Treino</a>
                         </td>
                     </tr>
 
@@ -47,8 +45,6 @@
                     </div>
                 }
             }
-
-
         </tbody>
     </table>
     <a type="button" class="btn btn-success" asp-action="CadastroCliente" asp-controller="Cliente">Cadastrar Cliente</a>

@@ -60,6 +60,18 @@ namespace Academia_WebApp.Repositorio
             return true;
         }
 
+        public List<ExercicioModel> ObterExerciciosPorMusculoAlvo(string musculoAlvo)
+        {
+            return _acadDbContext.Exercicio
+                .Where(e => e.MusculoAlvo == musculoAlvo)
+                .ToList();
+        }
+
+        public List<ExercicioModel> ObterTodosExercicios()
+        {
+            return _acadDbContext.Exercicio.ToList();
+        }
+
     }
 
 }

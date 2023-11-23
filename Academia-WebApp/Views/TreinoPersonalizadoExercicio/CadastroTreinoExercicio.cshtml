@@ -1,0 +1,43 @@
+﻿@model TreinoPersonalizadoExercicioModel
+
+@{
+    ViewData["Title"] = "Cadastrar De Exercicios";
+}
+
+<div class="text-center">
+    <h3>Cadastrar Treino</h3>
+</div>
+
+<form asp-controller="TreinoPersonalizadoExercicio" asp-action="CadastrarTreinoExercicio" method="post">
+    <input type="hidden" asp-for="TreinoPersonalizadoId" value="@ViewBag.TreinoPersonalizadoId" />
+
+    <div class="form-group">
+        <label for="nome">Series</label>
+        <input type="text" asp-for="Series" class="form-control" placeholder="Segunda-Feira">
+    </div>
+
+    <div class="form-group">
+        <label for="nome">Repetições</label>
+        <input asp-for="Repeticoes" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="nome">Carga</label>
+        <input asp-for="Carga" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="nome">Exercicio</label>
+        <select asp-for="ExercicioId" class="form-control">
+            @foreach (var exercicio in Model.ListaExercicio)
+            {
+                <option value="@exercicio.ExercicioId">@exercicio.Nome</option>
+            }
+        </select>
+    </div>
+
+    <div class="d-grid gap-2">
+        <button type="submit" id="alterarBtn" class="btn btn-primary">Cadastrar Treino</button>
+        <a class="btn btn-secondary btn-block" asp-controller="TreinoPersonalizadoExercicio" asp-action="Index" role="button">Voltar</a>
+    </div>
+</form>

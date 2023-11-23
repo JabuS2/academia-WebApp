@@ -9,7 +9,7 @@ namespace Academia_WebApp.Controllers
         private readonly IClienteRepositorio _clienteRepositorio;
         private readonly ITreinoRepositorio _treinoRepositorio;
 
-        public Cliente(IClienteRepositorio clienteRepositorio, ITreinoRepositorio treinoRepositorio) 
+        public Cliente(IClienteRepositorio clienteRepositorio, ITreinoRepositorio treinoRepositorio)
         {
             _clienteRepositorio = clienteRepositorio;
             _treinoRepositorio = treinoRepositorio;

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Academia_WebApp.Models
 {
@@ -18,10 +19,15 @@ namespace Academia_WebApp.Models
 
         // Relacionamento com Exercício
         public int ExercicioId { get; set; }
-        public ExercicioModel ?Exercicio { get; set; }
+        public ExercicioModel? Exercicio { get; set; }
+
+
+        [NotMapped]
+        public List<ExercicioModel>? ListaExercicio { get; set; }
+
 
         // Relacionamento com Treino Personalizado
         public int TreinoPersonalizadoId { get; set; }
-        public TreinoPersonalizadoModel ?TreinoPersonalizado { get; set; }
+        public TreinoPersonalizadoModel? TreinoPersonalizado { get; set; }
     }
 }

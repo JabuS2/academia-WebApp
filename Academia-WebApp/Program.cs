@@ -19,7 +19,7 @@ builder.Services.AddDbContext<acadDbContext>(options =>
 builder.Services.AddScoped<IClienteRepositorio, ClienteRepositorio>();
 builder.Services.AddScoped<IExercicioRepositorio, ExercicioRepositorio>();
 builder.Services.AddScoped<ITreinoRepositorio, TreinoRepositorio>();
-
+builder.Services.AddScoped<ITreinoPersonalizadoExercicioRepositorio, TreinoPersonalizadoExercicioRepositorio>();
 //builder.Services.AddScoped<IFornecedorRepositorio, FornecedorRepositorio>();
 
 

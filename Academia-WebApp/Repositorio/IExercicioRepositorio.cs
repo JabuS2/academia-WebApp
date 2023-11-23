@@ -13,5 +13,10 @@ namespace Academia_WebApp.Repositorio
 
         ExercicioModel ListarPorId(int id);
 
+        List<ExercicioModel> ObterExerciciosPorMusculoAlvo(string musculoAlvo);
+
+        List<ExercicioModel> ObterTodosExercicios();
+
+
     }
 }

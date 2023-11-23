@@ -9,7 +9,8 @@
 </div>
 
 <form asp-controller="TreinoPersonalizado" asp-action="CadastrarTreino" method="post">
-        <input type="hidden" asp-for="ClienteId" value="@ViewBag.ClienteId" />
+    <input type="hidden" asp-for="TreinoPersonalizadoId" value="@ViewBag.TreinoPersonalizadoId" />
+
 
         <div class="form-group">
             <label for="nome">Dia de treino/Observações</label>
@@ -28,5 +29,3 @@
         </div>
 
     </form>
-
-</p>

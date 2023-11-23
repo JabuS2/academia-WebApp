@@ -110,6 +110,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
+$(document).ready(function () {
+    $("#MusculoAlvo").change(function () {
+        var musculoAlvoSelecionado = $(this).val();
+
+        // Realiza uma chamada AJAX para buscar os exercícios correspondentes ao músculo alvo selecionado
+        $.ajax({
+            url: '/TreinoPersonalizadoExercicio/ExerciciosPorMusculoAlvo',
+            type: 'GET',
+            data: { musculoAlvo: musculoAlvoSelecionado },
+            success: function (data) {
+                // Atualiza o dropdown de exercícios com os resultados obtidos
+                var exercicioDropdown = $("#ExercicioId");
+                exercicioDropdown.empty();
+                $.each(data, function (index, exercicio) {
+                    exercicioDropdown.append($('<option>', {
+                        value: exercicio.exercicioId,
+                        text: exercicio.nome
+                    }));
+                });
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    });
+});
+
+
+$(document).ready(function () {
+    $(".btn-ver").click(function () {
+        // Obtenha o TreinoPersonalizadoId associado ao botão
+        var treinoId = $(this).data("treino-id");
+
+        // Envie o formulário associado ao botão "Ver"
+        $("#form-" + treinoId).submit();
+    });
+});
 
 
 

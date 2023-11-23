@@ -1,0 +1,47 @@
+﻿@model List<ClienteTreinoViewModel>
+
+@{
+    ViewData["Title"] = "Exercicios";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Exercicios do Dia</h1>
+
+    <table class="table" id="myTable">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Series</th>
+                <th scope="col">Repetições</th>
+                <th scope="col">Carga</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var clienteTreino in Model)
+            {
+                foreach (var treinoExercicio in clienteTreino.TreinosExcercicio)
+                {
+                    <tr>
+                        <th scope="row">@treinoExercicio.TreinoPersonalizadoExercicioId</th>
+                        <td>@clienteTreino.Cliente.Nome</td>
+                        <td>@treinoExercicio.Series</td>
+                        <td>@treinoExercicio.Repeticoes</td>
+                        <td>@treinoExercicio.Carga</td>
+                        <td>
+                            <button type="button" class="btn btn-danger">Excluir</button>
+                            <a type="button" class="btn btn-primary" asp-action="index" asp-controller="Cliente">Editar</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    <form asp-action="CadastroTreinoExercicio" asp-controller="TreinoPersonalizadoExercicio" method="get">
+        <input type="hidden" id="TreinoPersonalizadoId" name="TreinoPersonalizadoId" value="@ViewContext.HttpContext.Request.Query["TreinoPersonalizadoId"]" />
+        <button type="submit" class="btn btn-success">Adicionar Treino</button>
+    </form>
+</div>

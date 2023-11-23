@@ -26,7 +26,8 @@
                     <td>@clienteComTreinos.Treinos.FirstOrDefault()?.DataCriacao</td>
                     <td>
                         <button type="button" class="btn btn-danger">Excluir</button>
-                        <button type="button" class="btn btn-primary" id="ver">Ver</button>
+                        <a asp-action="Index" asp-controller="TreinoPersonalizadoExercicio" asp-route-TreinoPersonalizadoId="@clienteComTreinos.Treinos.FirstOrDefault()?.TreinoPersonalizadoId" class="btn btn-primary">Ver</a>
+
                     </td>
                 </tr>
             }

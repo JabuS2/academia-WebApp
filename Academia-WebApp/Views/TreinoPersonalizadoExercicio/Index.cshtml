@@ -11,7 +11,7 @@
         <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Cliente</th>
+                <th scope="col">Nome</th>
                 <th scope="col">Series</th>
                 <th scope="col">Repetições</th>
                 <th scope="col">Carga</th>
@@ -26,14 +26,14 @@
                 {
                     <tr>
                         <th scope="row">@treinoExercicio.TreinoPersonalizadoExercicioId</th>
-                        <td>@clienteTreino.Cliente.Nome</td>
+                        <td>@treinoExercicio.Exercicio?.Nome</td>
                         <td>@treinoExercicio.Series</td>
                         <td>@treinoExercicio.Repeticoes</td>
                         <td>@treinoExercicio.Carga</td>
                         <td>
-                            <button type="button" class="btn btn-danger">Excluir</button>
-                            <a type="button" class="btn btn-primary" asp-action="index" asp-controller="Cliente">Editar</a>
+                            <a type="button" class="btn btn-danger btn-lg btn-excluir-modal" asp-controller="TreinoPersonalizadoExercicio" asp-action="Excluir" asp-route-id="@treinoExercicio.TreinoPersonalizadoExercicioId">Excluir</a>
                         </td>
+
                     </tr>
                 }
             }

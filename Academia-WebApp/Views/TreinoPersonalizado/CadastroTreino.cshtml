@@ -9,7 +9,7 @@
 </div>
 
 <form asp-controller="TreinoPersonalizado" asp-action="CadastrarTreino" method="post">
-    <input type="hidden" asp-for="TreinoPersonalizadoId" value="@ViewBag.TreinoPersonalizadoId" />
+    <input type="hidden" id="ClienteId" name="ClienteId" value="@ViewContext.HttpContext.Request.Query["clienteId"]" />
 
 
         <div class="form-group">

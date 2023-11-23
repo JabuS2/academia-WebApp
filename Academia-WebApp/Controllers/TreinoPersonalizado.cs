@@ -25,14 +25,13 @@ namespace Academia_WebApp.Controllers
 
 
         [HttpPost]
+        [HttpPost]
         public IActionResult CadastrarTreino(TreinoPersonalizadoModel treino)
         {
-
-            treino.ClienteId = Convert.ToInt32(Request.Form["ClienteId"]);
-
             _TreinoRepositorio.Adicionar(treino);
-            return RedirectToAction("Index", "Cliente");
+            return RedirectToAction("Index", "Home");
         }
+
         public IActionResult Apagar(int id)
         {
             TreinoPersonalizadoModel treino = _TreinoRepositorio.ListarPorId(id);

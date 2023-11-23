@@ -67,7 +67,7 @@ namespace Academia_WebApp.Controllers
             treinoPersonalizadoExercicio.TreinoPersonalizadoId = Convert.ToInt32(Request.Form["TreinoPersonalizadoId"]);
 
             _treinoPersonalizadoExercicioRepositorio.Adicionar(treinoPersonalizadoExercicio);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Home");
         }
 
         public IActionResult Apagar(int id)
@@ -79,14 +79,29 @@ namespace Academia_WebApp.Controllers
         public IActionResult Excluir(int id)
         {
             _treinoPersonalizadoExercicioRepositorio.Excluir(id);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Home"); // ou redirecione para outra página conforme necessário
         }
+
+
 
         public IActionResult Editar(int id)
         {
             TreinoPersonalizadoExercicioModel treinoPersonalizadoExercicio = _treinoPersonalizadoExercicioRepositorio.ListarPorId(id);
+
+            if (treinoPersonalizadoExercicio == null)
+            {
+                // Lógica de tratamento quando o objeto não é encontrado
+                return View("Index","Home");
+            }
+
+            List<ExercicioModel> listaExercicio = _exercicioRepositorio.ObterTodosExercicios();
+
+            // Certifique-se de inicializar a propriedade ListaExercicio
+            treinoPersonalizadoExercicio.ListaExercicio = listaExercicio;
+
             return View("Editar", treinoPersonalizadoExercicio);
         }
+
 
         [HttpPost]
         public IActionResult Alterar(TreinoPersonalizadoExercicioModel treinoPersonalizadoExercicio)
@@ -94,5 +109,6 @@ namespace Academia_WebApp.Controllers
             _treinoPersonalizadoExercicioRepositorio.Atualizar(treinoPersonalizadoExercicio);
             return RedirectToAction("Index");
         }
+
     }
 }

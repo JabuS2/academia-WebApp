@@ -39,10 +39,17 @@ namespace Academia_WebApp.Repositorio
 
         public void Excluir(int id)
         {
-            TreinoPersonalizadoExercicioModel treinoPersonalizadoExercicio = _acadDbContext.TreinoPersonalizadoExercicio.Find(id);
-            _acadDbContext.TreinoPersonalizadoExercicio.Remove(treinoPersonalizadoExercicio);
-            _acadDbContext.SaveChanges();
+            TreinoPersonalizadoExercicioModel treinoPersonalizadoExercicio = ListarPorId(id);
+
+            if (treinoPersonalizadoExercicio != null)
+            {
+                _acadDbContext.TreinoPersonalizadoExercicio.Remove(treinoPersonalizadoExercicio);
+                _acadDbContext.SaveChanges();
+            }
         }
+
+
+
 
         public List<TreinoPersonalizadoExercicioModel> ObterTreinosPorCliente(int clienteId)
         {

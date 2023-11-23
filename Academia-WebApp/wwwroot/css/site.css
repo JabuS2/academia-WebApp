@@ -85,3 +85,13 @@ body {
     width: 100%; /* Padroniza a largura dos botões */
     margin-bottom: 10px; /* Adiciona espaçamento entre os botões */
 }
+
+h1 {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    font-family: "Raleway", sans-serif;
+    font-weight: 300;
+    font-size: 40px;
+    color: #00066d;
+}
